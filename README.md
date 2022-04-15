@@ -6,7 +6,7 @@ Building CRUD App
 * **Backend** - Assembly Script
 * **Frontend** - Vite
 
-## Issue
+## Issues
 
 1. For Apple M1, If you cannot install `near-sdk-as` and get an `Unsupported platform: Darwin arm64` error - [Link](https://docs.near.org/docs/faq/developer-faq#4-building-smart-contracts-on-apple-m1-arm64)
 
@@ -16,6 +16,26 @@ npm install --save-dev --ignore-scripts near-sdk-as
 
 2. AssemblyScript v0.20.x not working with `as-pect`, re
 
+3. `Buffer` polyfill with `create-react-app` (Webpack 5) -> Resolved by use `react-app-rewired` and custom webpack to use Buffer.
+
+```
+yarn add buffer process
+```
+
+File `config-overrides.js`
+
+```
+const webpack = require('webpack');
+module.exports = function override(config) {
+  config.plugins = (config.plugins || []).concat([
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+      Buffer: ['buffer', 'Buffer']
+    })
+  ]);
+  return config;
+};
+```
 
 ## Install
 
