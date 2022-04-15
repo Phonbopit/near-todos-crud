@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import Buffer from 'buffer';
+
+import * as nearAPI from 'near-api-js';
 
 import getConfig from './config.js';
-import * as nearAPI from 'near-api-js';
+
+// window.Buffer = Buffer;
 
 // Initializing contract
 async function initContract() {
@@ -49,19 +53,26 @@ async function initContract() {
   return { contract, currentUser, nearConfig, walletConnection };
 }
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 window.nearInitPromise = initContract().then(
   ({ contract, currentUser, nearConfig, walletConnection }) => {
-    ReactDOM.render(
+    root.render(
       <App
         contract={contract}
         currentUser={currentUser}
         nearConfig={nearConfig}
         wallet={walletConnection}
-      />,
-      document.getElementById('root')
+      />
     );
   }
 );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
