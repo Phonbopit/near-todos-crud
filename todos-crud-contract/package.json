@@ -4,13 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@assemblyscript/loader": "0.20.4",
+    "@assemblyscript/loader": "^0.19.14",
     "asbuild": "0.2.0",
-    "assemblyscript": "0.20.4",
-    "near-sdk-as": "3.2.3",
-    "near-cli": "3.2.0"
+    "assemblyscript": "^0.19.14",
+    "near-api-js": "0.44.2",
+    "near-cli": "3.2.0",
+    "near-sdk-as": "3.2.3"
   },
-  "type": "module",
   "exports": {
     ".": {
       "import": "./build/release.js",
@@ -21,7 +21,7 @@
     "asbuild:debug": "asc assembly/index.ts --target debug",
     "asbuild:release": "asc assembly/index.ts --target release",
     "asbuild": "npm run asbuild:debug && npm run asbuild:release",
-    "test": "node tests",
+    "test": "asp --verbose",
     "start": "npx serve ."
   },
   "devDependencies": {
